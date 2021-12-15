@@ -1,8 +1,13 @@
 import "../styles/MainForm.css"
-import {FormEvent} from "react";
+import {FormEvent, useState} from "react";
 import ConfirmationControlledPopup from "./ConfirmationControlledPopup";
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 function MainForm() {
+    const [startDate, setStartDate] = useState(new Date())
+    const [birthDate, setBirthDate] = useState(new Date())
+
     function submitHandler(e : FormEvent<HTMLFormElement>) {
         e.preventDefault()
         console.log('Form submitted')
@@ -15,6 +20,12 @@ function MainForm() {
 
             <label>Last Name</label>
             <input type="text" id="last-name" />
+
+            <label>Date of Birth</label>
+            <DatePicker id="birth-date" onChange={((date : Date) => setBirthDate(date))} selected={birthDate} />
+
+            <label htmlFor="start-date">Start Date</label>
+            <DatePicker id="start-date" selected={startDate} onChange={((date : Date) => setStartDate(date))}/>
 
             <fieldset id="address-field">
                 <legend>Address</legend>
