@@ -1,0 +1,22 @@
+#main-form {
+    display: flex;
+    flex-direction: column;
+    min-width: 20rem;
+    width: 25vw;
+    margin: auto;
+}
+
+#main-form label {
+    text-align: start;
+    margin: 1rem 0;
+}
+
+#address-field {
+    display: flex;
+    flex-direction: column;
+}
+
+#main-form input[type="submit"] {
+    width : 5rem;
+    margin: 1rem auto;
+}

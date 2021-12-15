@@ -1,0 +1,25 @@
+.modal {
+    position: relative;
+    line-height: 2rem;
+    padding-left: 1rem;
+}
+
+.popup-content {
+    padding: 0;
+    height: 2rem;
+}
+
+.close {
+    font-size : 1.5rem;
+    position: absolute;
+    right: -0.75rem;
+    top : -0.75rem;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 1.5rem;
+    height : 1.5rem;
+    text-align: center;
+    line-height: 1rem;
+    cursor: pointer;
+    border: 1px solid grey;
+}
