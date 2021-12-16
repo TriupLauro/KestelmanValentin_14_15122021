@@ -57,7 +57,7 @@ function MainForm() {
             street,
             city,
             state : state.abbreviation,
-            zipCode,
+            zipCode : parseInt(zipCode,10),
             department,
             id : dataLength
         }

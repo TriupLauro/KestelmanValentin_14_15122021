@@ -10,7 +10,7 @@ interface Employee {
     street : string
     city : string
     state : string
-    zipCode : string
+    zipCode : number
     department :string
     id : number
 }

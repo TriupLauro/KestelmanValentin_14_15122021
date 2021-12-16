@@ -558,9 +558,21 @@
       "street": "Kirisame Magic Shop",
       "city": "Gensokyo",
       "state": "AL",
-      "zipCode": "50259",
+      "zipCode": 50259,
       "department": "Human Resources",
       "id": 50
+    },
+    {
+      "firstName": "Reimu",
+      "lastName": "Hakurei",
+      "dateOfBirth": "10/13/2004",
+      "startDate": "07/27/2020",
+      "street": "Hakurei Shrine",
+      "city": "Gensokyo",
+      "state": "GU",
+      "zipCode": 50895,
+      "department": "Sales",
+      "id": 51
     }
   ]
 }
