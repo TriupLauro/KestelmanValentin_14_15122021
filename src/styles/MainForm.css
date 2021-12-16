@@ -17,11 +17,15 @@
     margin : 1rem 0;
 }
 
-#main-form input[type="submit"] {
+#main-form button[type="submit"] {
     width : 5rem;
     margin: 1rem auto;
 }
 
 .react-datepicker__input-container input {
     width : 97%;
+}
+
+.szh-menu__item {
+    text-align: start;
 }

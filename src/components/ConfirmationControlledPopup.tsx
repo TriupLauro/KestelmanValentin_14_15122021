@@ -3,7 +3,7 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css"
 import "../styles/Modal.css"
 
-function ConfirmationControlledPopup() {
+function ConfirmationControlledPopup({validationError} : {validationError : boolean}) {
     const [open, setOpen] = useState(false)
     function closeModal() {
         setOpen(false)
@@ -17,7 +17,7 @@ function ConfirmationControlledPopup() {
             <Popup open={open} closeOnDocumentClick onClose={closeModal}>
                 <div className="modal">
                     <a className="close" onClick={closeModal}>&times;</a>
-                    Employee created !
+                    {validationError ? "Creation aborted, missing fields" : "Employee created !"}
                 </div>
             </Popup>
         </>
