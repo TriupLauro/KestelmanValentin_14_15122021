@@ -1,9 +1,23 @@
+import {ColumnsLabelItem} from "vk-custom-tables";
+
 export const departments : string[] = [
     'Sales',
     'Marketing',
     'Engineering',
     'Human Resources',
     'Legal'
+]
+
+export const columnsLabel : ColumnsLabelItem[] = [
+    { title: 'First Name', label: 'firstName' },
+    { title: 'Last Name', label: 'lastName' },
+    { title: 'Start Date', label: 'startDate' },
+    { title: 'Department', label: 'department' },
+    { title: 'Date of Birth', label: 'dateOfBirth' },
+    { title: 'Street', label: 'street' },
+    { title: 'City', label: 'city' },
+    { title: 'State', label: 'state' },
+    { title: 'Zip Code', label: 'zipCode' }
 ]
 
 export const states : {name : string, abbreviation : string}[] = [

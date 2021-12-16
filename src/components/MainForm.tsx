@@ -7,6 +7,9 @@ import {ClickEvent, Menu, MenuButton, MenuItem} from "@szhsin/react-menu";
 import '@szhsin/react-menu/dist/index.css'
 import '@szhsin/react-menu/dist/transitions/slide.css'
 import {departments, states} from "../data/data";
+import {useMutation, useQuery} from "react-query";
+import {getList, postNewEmployee} from "../api/apiQueries";
+import {format} from "date-fns";
 
 interface State {
     name : string
@@ -14,8 +17,8 @@ interface State {
 }
 
 function MainForm() {
-    const [startDate, setStartDate] = useState<Date | null>(new Date())
-    const [birthDate, setBirthDate] = useState<Date | null>(new Date())
+    const [startDate, setStartDate] = useState<Date>(new Date())
+    const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date())
     const [state, setState] = useState<State>(states[0])
     const [department, setDepartment] = useState('Sales')
     const [firstName, setFirstName] = useState('')
@@ -25,19 +28,38 @@ function MainForm() {
     const [zipCode, setZipCode] = useState<string>('0')
     const [validationError, setValidationError] = useState(true)
 
+    const {isLoading, isError, data, error} = useQuery('get-list', getList)
+
+    const mutateNewEmployee = useMutation(postNewEmployee)
+
+    if (isError) console.error(error)
+
+    const dataLength = data?.data.length
+
     function submitHandler(e : FormEvent<HTMLFormElement>) {
         e.preventDefault()
+
+        if (isLoading) {
+            console.warn('Data still loading')
+            return null
+        }
+
+        if (isError) {
+            console.warn('Couldn\'t load data. Operation aborted.')
+            return null
+        }
 
         const newEmployee = {
             firstName,
             lastName,
-            birthDate,
-            startDate,
+            dateOfBirth : format(dateOfBirth, 'MM/dd/yyyy').toString(),
+            startDate : format(startDate, 'MM/dd/yyyy').toString(),
             street,
             city,
             state : state.abbreviation,
             zipCode,
-            department
+            department,
+            id : dataLength
         }
 
         for (let value of Object.values(newEmployee)) {
@@ -50,6 +72,7 @@ function MainForm() {
 
         setValidationError(false)
         console.dir(newEmployee)
+        mutateNewEmployee.mutate(newEmployee)
     }
 
     function clickStateHandler(e : ClickEvent) {
@@ -90,10 +113,14 @@ function MainForm() {
             <input type="text" id="last-name" onChange={changeLastNameHandler} value={lastName}/>
 
             <label htmlFor="birth-date">Date of Birth</label>
-            <DatePicker id="birth-date" onChange={((date : Date | null) => setBirthDate(date))} selected={birthDate} />
+            <DatePicker id="birth-date" onChange={((date : Date) => setDateOfBirth(date))} selected={dateOfBirth}
+                        dateFormat="MM/dd/yyyy"
+            />
 
             <label htmlFor="start-date">Start Date</label>
-            <DatePicker id="start-date" selected={startDate} onChange={((date : Date | null) => setStartDate(date))}/>
+            <DatePicker id="start-date" selected={startDate} onChange={((date : Date) => setStartDate(date))}
+                        dateFormat="MM/dd/yyyy"
+            />
 
             <fieldset id="address-field">
                 <legend>Address</legend>

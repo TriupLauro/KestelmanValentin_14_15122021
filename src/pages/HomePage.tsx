@@ -1,4 +1,5 @@
 import MainForm from "../components/MainForm";
+import {Link} from "react-router-dom";
 
 
 function HomePage() {
@@ -6,7 +7,7 @@ function HomePage() {
         <>
             <h1>HRNet</h1>
             <div className="form-container">
-                <a href="#">View Current Employees</a>
+                <Link to="/employees">View Current Employees</Link>
             </div>
             <MainForm />
         </>
