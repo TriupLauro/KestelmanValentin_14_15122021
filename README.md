@@ -9,8 +9,7 @@ Clone this repository
 
 Install dependencies
 
-- `npm install` or
-- `yarn install`
+`npm install` 
 
 ## Running the app
 
